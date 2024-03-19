@@ -10,13 +10,18 @@ app = FastAPI()
 async def startup_event():
     print("Hello World")
 
+
+@app.get("/")
+async def root():
+    return {"message": "Hello World"}
+
 @app.post('/greetings')
 async def say_hello(input_data: dict):
     return {'hello_string': f'{input_data.get("name")}, your env is {os.getenv("MY_ENV")}'}
 
 @app.get('/actuator/health')
 async def health():
-    return 'I am working'
+    return 'I am working!!'
 
 
 
